@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 
 const routes = [
+  // =========================
+  // PUBLIC / MAIN LAYOUT
+  // =========================
   {
     path: '/',
     component: AppLayout,
@@ -12,18 +15,21 @@ const routes = [
         component: () => import('@/views/Home.vue'),
         meta: { breadcrumb: 'Home' },
       },
+
       {
         path: 'about',
         name: 'about',
         component: () => import('@/views/About.vue'),
         meta: { breadcrumb: 'About' },
       },
+
       {
         path: 'browse',
         name: 'browse',
         component: () => import('@/views/Browse.vue'),
         meta: { breadcrumb: 'Browse' },
         redirect: '/browse/events',
+
         children: [
           {
             path: 'events',
@@ -31,12 +37,14 @@ const routes = [
             component: () => import('@/views/EventList.vue'),
             meta: { breadcrumb: 'Event List' },
           },
+
           {
             path: 'events/:id',
             name: 'event-detail',
             component: () => import('@/views/EventDetail.vue'),
             meta: { breadcrumb: 'Event Detail' },
           },
+
           {
             path: 'category',
             name: 'category',
@@ -45,11 +53,29 @@ const routes = [
           },
         ],
       },
+
       {
         path: 'contact',
         name: 'contact',
         component: () => import('@/views/Contact.vue'),
         meta: { breadcrumb: 'Contact' },
+      },
+    ],
+  },
+
+  // =========================
+  // DASHBOARD LAYOUT
+  // =========================
+  {
+    path: '/dashboard',
+    component: () => import('@/layouts/DashboardLayout.vue'),
+
+    children: [
+      {
+        path: '',
+        name: 'dashboard',
+        component: () => import('@/views/Dashboard.vue'),
+        meta: { breadcrumb: 'Dashboard' },
       },
     ],
   },

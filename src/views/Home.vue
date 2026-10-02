@@ -1,278 +1,190 @@
-<template>
+﻿<template>
   <div class="home-page">
-    <section class="hero">
+    <section class="hero-section">
       <div class="hero-content">
-        <span class="badge">Welcome to Gatherly</span>
-
         <h1 class="hero-title">Connect, Discover, and Experience</h1>
 
         <p class="hero-subtitle">
-          Join our vibrant community to explore the best events tailored for you. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua.
+          A community event platform designed to bring ideas together. Discover hundreds of events
+          near you.
         </p>
 
-        <div class="hero-actions">
-          <router-link to="/browse/events" class="btn btn-primary"> Discover Events </router-link>
-
-          <router-link to="/about" class="btn btn-secondary"> Learn More </router-link>
+        <div class="hero-action">
+          <router-link to="/browse/events" class="btn-primary"> Discover Events </router-link>
         </div>
       </div>
     </section>
 
-    <section class="features">
-      <div class="feature-card" v-for="(feat, index) in featureList" :key="index">
-        <div class="feature-icon">{{ feat.icon }}</div>
-        <h3>{{ feat.title }}</h3>
-        <p>{{ feat.desc }}</p>
+    <section class="features-section">
+      <div class="features-header">
+        <h2>Why Choose Gatherly?</h2>
+
+        <p>Everything you need to host or attend unforgettable events.</p>
       </div>
-    </section>
 
-    <section class="sitemap-visual">
-      <h2>Website Structure / Site-Map</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔎</div>
 
-      <p class="sitemap-desc">
-        A quick overview of how this application is structured via Vue Router.
-      </p>
+          <h3>Discover Easily</h3>
 
-      <ul class="tree">
-        <li>
-          <router-link to="/">Home</router-link>
-          <ul>
-            <li><router-link to="/about">About</router-link></li>
-            <li>
-              <router-link to="/browse">Browse</router-link>
-              <ul>
-                <li>
-                  <router-link to="/browse/events">Event List</router-link>
-                  <ul>
-                    <li><router-link to="/browse/events/1">Event Detail (Example)</router-link></li>
-                  </ul>
-                </li>
-                <li><router-link to="/browse/category">Category</router-link></li>
-              </ul>
-            </li>
-            <li><router-link to="/contact">Contact</router-link></li>
-          </ul>
-        </li>
-      </ul>
+          <p>
+            Find events tailored to your interests using our smart category and location filters.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎟️</div>
+
+          <h3>Seamless Ticketing</h3>
+
+          <p>Register with one click and get your digital QR ticket instantly on your device.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+
+          <h3>Host Like a Pro</h3>
+
+          <p>
+            Manage attendees, track revenue, and scan QR codes with our comprehensive dashboard.
+          </p>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
-<script setup>
-const featureList = [
-  {
-    icon: '🎵',
-    title: 'Curated Events',
-    desc: 'Up event ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  },
-  {
-    icon: '🌏',
-    title: 'Global Reach',
-    desc: 'Up event ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  },
-  {
-    icon: '🤝',
-    title: 'Community Driven',
-    desc: 'Up event ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  },
-]
-</script>
-
 <style scoped>
-.home-page {
-  padding-bottom: 3rem;
-}
+.hero-section {
+  /* THE FOLD: Force hero height to viewport minus navbar */
+  min-height: 65vh;
 
-/* Hero */
-.hero {
-  background: #fff;
-  color: #1c1948;
-  padding: 5rem 2rem;
-  border-radius: 16px;
-  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  border: 1px solid #e8e8ee;
+
+  background: var(--bg-light);
+  border-radius: var(--space-6);
+
+  border: 1px solid var(--border-color);
+
+  padding: var(--space-12) var(--space-6);
+  margin-bottom: var(--space-12);
 }
 
 .hero-content {
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 800px;
+
+  /* Z-PATTERN: Center aligned cascading elements */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.badge {
-  display: inline-block;
-  background: rgba(28, 25, 72, 0.08);
-  color: #6644ff;
-  padding: 0.4rem 1.2rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(28, 25, 72, 0.12);
-}
-
+/* SCALE: Massive font sets the highest ranked importance */
 .hero-title {
-  font-size: 2.8rem;
+  font-size: 4rem;
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 1.25rem;
-  color: #1c1948;
+  color: var(--text-main);
+  line-height: 1.1;
+  margin-bottom: var(--space-6);
 }
 
 .hero-subtitle {
-  font-size: 1.05rem;
-  color: #64748b;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.8rem;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  cursor: pointer;
-  border: none;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
 }
 
 .btn-primary {
-  background: #6644ff;
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(102, 68, 255, 0.35);
+  background-color: var(--primary);
+  color: white;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  padding: var(--space-3) var(--space-8);
+
+  border-radius: 12px;
+
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+
+  /* Make button pop to pass the Squint Test */
+  box-shadow: 0 8px 20px rgba(102, 68, 255, 0.3);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(102, 68, 255, 0.5);
-  background: #5533ee;
-}
-
-.btn-secondary {
-  background: rgba(28, 25, 72, 0.06);
-  color: #1c1948;
-  border: 1px solid rgba(28, 25, 72, 0.2);
-}
-
-.btn-secondary:hover {
-  background: rgba(28, 25, 72, 0.12);
+  background: var(--primary-hover);
   transform: translateY(-2px);
 }
 
-/* Features */
-.features {
+/* NEW FEATURES SECTION */
+
+
+.features-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.features-header h2 {
+  font-size: 2.2rem;
+  color: var(--text-main);
+  margin-bottom: var(--space-2);
+}
+
+.features-header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.features-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
 }
 
 .feature-card {
-  background: #fff;
-  border: 1px solid #e8e8ee;
-  border-radius: 16px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  background: var(--bg-light);
+
+  padding: var(--space-8);
+
+  border-radius: var(--space-4);
+
+  border: 1px solid var(--border-color);
+
+  text-align: center;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-color: #6644ff;
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
 }
 
 .feature-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
 }
 
 .feature-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: var(--text-main);
+  margin-bottom: var(--space-2);
 }
 
 .feature-card p {
-  color: #64748b;
-  font-size: 0.92rem;
+  color: var(--text-muted);
   line-height: 1.6;
-}
-
-/* Sitemap */
-.sitemap-visual {
-  background: #fff;
-  border: 1px solid #e8e8ee;
-  border-radius: 16px;
-  padding: 2rem;
-}
-
-.sitemap-visual h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.5rem;
-}
-
-.sitemap-desc {
-  color: #64748b;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.tree {
-  list-style: disc;
-  padding-left: 1.25rem;
-}
-
-.tree ul {
-  list-style: circle;
-  padding-left: 1.5rem;
-  margin-top: 0.25rem;
-}
-
-.tree ul ul {
-  list-style: square;
-}
-
-.tree li {
-  margin-bottom: 0.35rem;
-}
-
-.tree a {
-  color: #6644ff;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.tree a:hover {
-  color: #4422cc;
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  .features {
-    grid-template-columns: 1fr;
-  }
-  .hero {
-    padding: 3rem 1.5rem;
-  }
 }
 </style>

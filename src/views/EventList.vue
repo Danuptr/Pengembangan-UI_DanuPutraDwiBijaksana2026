@@ -1,29 +1,98 @@
-﻿<template>
+﻿<script setup>
+const events = [
+  {
+    id: 1,
+    title: 'Vue.js Mastery Workshop',
+    date: 'Oct 12, 2026',
+    loc: 'Tech Hub, Jakarta',
+    cat: 'Workshop',
+    desc: 'Hands-on session on designing user interfaces that scale.',
+  },
+  {
+    id: 2,
+    title: 'National Tech Meetup',
+    date: 'Oct 15, 2026',
+    loc: 'Main Auditorium, City Center',
+    cat: 'Meetup',
+    desc: 'A gathering of hundreds of developers and tech enthusiasts.',
+  },
+  {
+    id: 3,
+    title: 'Startup Pitch Competition',
+    date: 'Nov 02, 2026',
+    loc: 'Innovation Center',
+    cat: 'Competition',
+    desc: 'Watch the best local startups pitch their innovative ideas.',
+  },
+  {
+    id: 4,
+    title: 'UI/UX Design Sprint',
+    date: 'Nov 10, 2026',
+    loc: 'Creative Studio',
+    cat: 'Workshop',
+    desc: 'Hands-on session on designing user interfaces by applying layout systems.',
+  },
+  {
+    id: 5,
+    title: 'Digital Marketing Seminar',
+    date: 'Nov 20, 2026',
+    loc: 'Grand Hotel Hall',
+    cat: 'Seminar',
+    desc: 'An in-depth seminar covering digital marketing strategies.',
+  },
+  {
+    id: 6,
+    title: 'Community Leaders Summit',
+    date: 'Dec 05, 2026',
+    loc: 'Gatherly HQ',
+    cat: 'Conference',
+    desc: 'A conference for community leaders to formulate sustainable strategies.',
+  },
+]
+</script>
+
+<template>
   <div class="event-list-page">
     <div class="section-header">
       <h2 class="section-title">Upcoming Events</h2>
-      <p class="section-desc">Discover the latest gatherings and activities happening near you.</p>
+
+      <p class="section-desc">
+        Discover workshops, seminars, tech meetups, and competitions near you.
+      </p>
     </div>
 
+    <!-- LAYOUT SYSTEM: ADAPTIVE GRID -->
+
     <div class="event-grid">
-      <div class="event-card" v-for="i in 6" :key="i">
+      <!-- VISUAL HIERARCHY: GROUPING & COMMON REGIONS -->
+
+      <div class="event-card" v-for="event in events" :key="event.id">
         <div class="event-body">
+          <!-- LABEL CONTRAST -->
           <div class="event-meta">
-            <span class="event-date"> Oct {{ 10 + i }}, 2026 </span>
-            <span class="event-category"> Community </span>
+            <span class="event-date">
+              {{ event.date }}
+            </span>
+
+            <span class="event-category">
+              {{ event.cat }}
+            </span>
           </div>
 
-          <h3>Community Gathering {{ i }}</h3>
+          <h3 class="event-title">
+            {{ event.title }}
+          </h3>
 
-          <p class="event-loc">📍 Main Auditorium, City Center</p>
+          <p class="event-loc">📍 {{ event.loc }}</p>
 
           <p class="event-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at velit vel magna
-            interdum scelerisque.
+            {{ event.desc }}
           </p>
 
           <div class="card-footer">
-            <router-link :to="'/browse/events/' + i" class="btn-link"> View Details → </router-link>
+            <router-link :to="`/browse/events/${event.id}`" class="btn-link">
+              View Event Details →
+            </router-link>
           </div>
         </div>
       </div>
@@ -32,114 +101,138 @@
 </template>
 
 <style scoped>
-.event-list-page {
-  padding-bottom: 2rem;
-}
-
-.section-header {
-  margin-bottom: 2rem;
+.header-section {
+  margin-bottom: var(--space-8);
 }
 
 .section-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.35rem;
+  font-size: 2.2rem;
+  margin-bottom: var(--space-2);
 }
 
 .section-desc {
-  color: #64748b;
-  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-size: 1.1rem;
 }
+
+/* ADAPTIVE GRID */
 
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: var(--space-6);
 }
 
+/* COMMON REGIONS */
+
 .event-card {
-  background: #fff;
-  border: 1px solid #e8e8ee;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  background: white;
+
+  border-radius: var(--space-4);
+
+  border: 1px solid var(--border-color);
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .event-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  border-color: #6644ff;
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
 }
 
+/* PROXIMITY */
+
 .event-body {
-  padding: 1.5rem;
+  padding: var(--space-6);
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
 }
 
 .event-meta {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: var(--space-4);
 }
 
 .event-date {
-  background: #f1f0ff;
-  color: #6644ff;
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.8rem;
+  background: rgba(102, 68, 255, 0.1);
+
+  color: var(--primary);
+
+  padding: var(--space-1) var(--space-2);
+
+  border-radius: 6px;
+
   font-weight: 600;
+
+  font-size: 0.85rem;
 }
 
 .event-category {
-  background: #ecfdf5;
-  color: #10b981;
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: var(--text-muted);
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  text-transform: uppercase;
 }
 
-.event-body h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #1a1a2e;
-  margin-bottom: 0.5rem;
+.event-title {
+  margin-bottom: var(--space-2);
+
+  font-size: 1.4rem;
 }
 
 .event-loc {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+
+  font-size: 0.95rem;
+
+  margin-bottom: var(--space-4);
 }
 
 .event-desc {
-  color: #64748b;
-  font-size: 0.9rem;
+  color: var(--text-muted);
+
   line-height: 1.6;
-  margin-bottom: 1rem;
+
+  font-size: 0.95rem;
+
+  margin-bottom: var(--space-6);
+
+  flex-grow: 1;
 }
 
 .card-footer {
-  padding-top: 0.75rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--border-color);
+
+  padding-top: var(--space-4);
 }
 
 .btn-link {
-  color: #6644ff;
+  color: var(--text-main);
+
   font-weight: 600;
-  font-size: 0.9rem;
+
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .btn-link:hover {
-  color: #4422cc;
-}
-
-@media (max-width: 768px) {
-  .event-grid {
-    grid-template-columns: 1fr;
-  }
+  color: var(--primary);
 }
 </style>
