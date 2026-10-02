@@ -138,6 +138,8 @@
 }
 
 @media (max-width: 768px) {
-  .event-grid { grid-template-columns: 1fr; }
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
