@@ -46,7 +46,7 @@ import { RouterView, RouterLink } from 'vue-router'
 
 <style scoped>
 /*
-  Full-screen app layout (khas dashboard).
+  Full-screen app layout
   Tinggi disetel 100vh agar bagian rail tidak ikut terguyur
   ke atas saat pane di-scroll.
 */
