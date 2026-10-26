@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -439,3 +439,4 @@ onUnmounted(() => {
   }
 }
 </style>
+
