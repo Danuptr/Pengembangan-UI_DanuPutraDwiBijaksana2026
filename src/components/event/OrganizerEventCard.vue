@@ -1,4 +1,4 @@
-﻿<script setup>
+<script setup>
 import AppCard from '@/components/ui/AppCard.vue';
 
 defineProps({
@@ -25,7 +25,7 @@ defineEmits(['view-detail', 'complete', 'delete']);
     </div>
 
     <h3 :class="['event-title', { 'text-strike': isCompleted }]">{{ event.title }}</h3>
-    <p class="event-meta">📅 {{ event.date }} &bull; 📍 {{ event.loc }}</p>
+    <p class="event-meta">📅 {{ event.date }} &bull; {{ event.loc }}</p>
     <p class="event-desc">{{ event.desc }}</p>
 
     <div v-if="isCompleted" class="completed-notice">
